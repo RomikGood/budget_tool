@@ -1,6 +1,6 @@
 import factory
 from django.contrib.auth.models import User
-from ..board.models import Transaction, Budget
+from board.models import Transaction, Budget
 
 
 class UserFactory(factory.django.DjangoModelFactory):
@@ -23,7 +23,7 @@ class BudgetFactory(factory.django.DjangoModelFactory):
 
     user = factory.SubFactory(UserFactory)
     name = factory.Faker('word')
-    description = factory.Faker('paragraph')
+    total_budget = factory.Faker(55.5)
 
 
 class TransactionFactory(factory.django.DjangoModelFactory):
@@ -34,5 +34,5 @@ class TransactionFactory(factory.django.DjangoModelFactory):
 
     assigned_to = factory.SubFactory(UserFactory)
     budget = factory.SubFactory(BudgetFactory)
-    amount = factory.Faker('')
+    amount = factory.Faker(55.5)
     description = factory.Faker('paragraph')
