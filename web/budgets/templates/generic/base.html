@@ -18,7 +18,7 @@
       <ul>
         <li><a href="{% url "home" %}">Home</a></li>
         {% if user.is_authenticated %}
-        <li><a href="{% url "category_view" %}">Board</a></li>
+        <li><a href="{% url "budget_view" %}">Board</a></li>
         {% if user.is_superuser %}
         <li><a href="{% url "admin:index" %}">Admin</a></li>
         {% endif %}

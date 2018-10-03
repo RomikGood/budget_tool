@@ -1,9 +1,9 @@
 from django.test import TestCase
 
 
-class TestCategoryFunctional(TestCase):
+class TestBudgetFunctional(TestCase):
     pass
 
 
-class TestCaryFunctional(TestCase):
+class TestTransactionFunctional(TestCase):
     pass

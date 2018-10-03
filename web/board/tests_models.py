@@ -1,18 +1,18 @@
 from django.test import TestCase
-from ..kanban_project.factories import UserFactory, CategoryFactory, CardFactory
+from ..budgets.factories import UserFactory, BudgetFactory, TranactionFactory
 
 
-class TestCategoryModels(TestCase):
+class TestBudgetModels(TestCase):
     def setUp(self):
-        self.category = CategoryFactory(
+        self.budget = BudgetFactory(
             name='test name',
             description='test desc'
         )
 
-    def test_default_category_attrs(self):
-        self.assertEqual(self.category.name, 'test name')
-        self.assertEqual(self.category.description, 'test desc')
+    def test_default_budget_attrs(self):
+        self.assertEqual(self.budget.name, 'test name')
+        self.assertEqual(self.budget.description, 'test desc')
 
 
-class TestCardModels(TestCase):
+class TestTransactionModels(TestCase):
     pass

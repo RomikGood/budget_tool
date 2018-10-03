@@ -135,7 +135,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # Django Registration
 ACCOUNT_ACTIVATION_DAYS = 1
-LOGIN_REDIRECT_URL = '/board/category'
+LOGIN_REDIRECT_URL = '/board/budget'
 if DEBUG:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 # else:

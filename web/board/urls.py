@@ -1,7 +1,7 @@
 from django.urls import path
-from .views import CategoryListView, CardDetailView
+from .views import BudgetListView, TransactionDetailView
 
 urlpatterns = [
-    path('category', CategoryListView.as_view(), name='category_view'),
-    path('card/<int:id>', CardDetailView.as_view(), name='card_detail'),
+    path('budget', BudgetListView.as_view(), name='budget_view'),
+    path('transaction/<int:id>', TransactionDetailView.as_view(), name='transaction_detail'),
 ]
