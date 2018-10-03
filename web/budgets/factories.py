@@ -22,8 +22,8 @@ class BudgetFactory(factory.django.DjangoModelFactory):
         model = Budget
 
     user = factory.SubFactory(UserFactory)
-    name = factory.Faker('word')
-    total_budget = factory.Faker(55.5)
+    name = 'name'
+    total_budget = 55.5
 
 
 class TransactionFactory(factory.django.DjangoModelFactory):
@@ -34,5 +34,5 @@ class TransactionFactory(factory.django.DjangoModelFactory):
 
     assigned_to = factory.SubFactory(UserFactory)
     budget = factory.SubFactory(BudgetFactory)
-    amount = factory.Faker(55.5)
+    amount = 55.5
     description = factory.Faker('paragraph')

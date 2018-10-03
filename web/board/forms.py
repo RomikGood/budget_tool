@@ -6,3 +6,9 @@ class BudgetForm(ModelForm):
     class Meta:
         model = Budget
         fields = ['name', 'total_budget']
+
+
+class TransactionForm(ModelForm):
+    class Meta:
+        model = Transaction
+        fields = ['amount', 'description']
