@@ -5,10 +5,14 @@ from django.db import models
 
 
 class Budget(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='budgets')
+    user = models.ForeignKey(
+        User, 
+        on_delete=models.CASCADE, 
+        related_name='budgets'
+    )
     name = models.CharField(max_length=180, default='Untitled')
-    total_budget = models.FloatField()
-    remaining_budget = models.FloatField()
+    total_budget = models.FloatField(default=0.0)
+    remaining_budget = models.FloatField(default=0.0)
     # date_uploaded = models.DateField(auto_now_add=True)
     # date_modified = models.DateField(auto_now=True)
 
@@ -23,7 +27,7 @@ class Transaction(models.Model):
     assigned_to = models.ForeignKey(User, on_delete=models.CASCADE, related_name='transaction', null=True, blank=True)
     budget = models.ForeignKey(Budget, on_delete=models.CASCADE, related_name='transaction')
     
-    amount = models.FloatField()
+    amount = models.FloatField(max_length=180, default=0.0)
      
     description = models.TextField(blank=True, null=True)
 

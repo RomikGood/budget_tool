@@ -23,7 +23,7 @@ class TestBudgetViews(TestCase):
         budget = BudgetFactory(user=self.user)
         res = self.c.get('/board/budget')
 
-        self.assertIn(budget.name.encode(), res.content)
+        self.assertIn(budget.name, res.content)
 
     def test_lists_only_owned_budgets(self):
         self.c.login(
@@ -36,8 +36,8 @@ class TestBudgetViews(TestCase):
 
         res = self.c.get('/board/budget')
 
-        self.assertIn(own_budget.name.encode(), res.content)
-        self.assertNotIn(other_budget.name.encode(), res.content)
+        self.assertIn(own_budget.name, res.content)
+        self.assertNotIn(other_budget.name, res.content)
 
     def test_transactions_listed_in_view(self):
         self.c.login(
@@ -48,7 +48,7 @@ class TestBudgetViews(TestCase):
         transaction = TransactionFactory(budget=budget)
         res = self.c.get('/board/budget')
 
-        self.assertIn(transaction.amount.encode(), res.content)
+        self.assertIn(transaction.amount, res.content)
 
 
 class TestTransactionViews(TestCase):
@@ -71,9 +71,9 @@ class TestBudgetCreateViews(TestCase):
         res = self.c.get('/board/budget/new')
 
         self.assertEqual(res.status_code, 200)
-        self.assertIn(b'input type="submit"', res.content)
-        self.assertIn(b'name="name"', res.content)
-        self.assertIn(b'name="total_budget"', res.content)
+        self.assertEqual('input type="submit"', res.content)
+        self.assertEqual('name="name"', res.content)
+        self.assertEqual('name="total_budget"', res.content)
 
     def test_create_view_adds_new_budget(self):
         self.c.login(
@@ -83,11 +83,11 @@ class TestBudgetCreateViews(TestCase):
 
         form_data = {
             'name': 'Name thing',
-            'total_budget': '55.5'
+            'total_budget': 55.5
         }
 
         res = self.c.post('/board/budget/add', form_data, follow=True)
 
 
-        self.assertIn(b'Name thing', res.content)
+        self.assertEqual('Name thing', res.content)
 
