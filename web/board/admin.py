@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Category, Card
+from .models import Budget, Transaction
 
 
-admin.site.register((Category, Card))
+admin.site.register((Budget, Transaction))

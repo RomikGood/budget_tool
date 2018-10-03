@@ -1,8 +1,8 @@
 from django.test import TestCase, Client
-from ..kanban_project.factories import CategoryFactory, CardFactory, UserFactory
+from ..kanban_project.factories import BudgetFactory, TransactionFactory, UserFactory
 
 
-class TestCategoryViews(TestCase):
+class TestBudgetViews(TestCase):
     def setUp(self):
         self.user = UserFactory()
         self.user.set_password('secret')
@@ -10,7 +10,7 @@ class TestCategoryViews(TestCase):
         self.c = Client()
 
     def test_denied_if_no_login(self):
-        res = self.c.get('/board/category', follow=True)
+        res = self.c.get('/board/budget', follow=True)
         self.assertEqual(res.status_code, 200)
         self.assertIn(b'class="login-form container"', res.content)
 
@@ -20,37 +20,41 @@ class TestCategoryViews(TestCase):
             password='secret'
         )
 
-        category = CategoryFactory(user=self.user)
-        res = self.c.get('/board/category')
+        budget = BudgetFactory(user=self.user)
+        res = self.c.get('/board/budget')
 
-        self.assertIn(category.name.encode(), res.content)
+        self.assertIn(budget.name.encode(), res.content)
 
-    def test_lists_only_owned_categories(self):
+    def test_lists_only_owned_budgets(self):
         self.c.login(
             username=self.user.username,
             password='secret'
         )
 
-        own_category = CategoryFactory(user=self.user)
-        other_category = CategoryFactory()
+        own_budget = BudgetFactory(user=self.user)
+        other_budget = BudgetFactory()
 
-        res = self.c.get('/board/category')
+        res = self.c.get('/board/budget')
 
-        self.assertIn(own_category.name.encode(), res.content)
-        self.assertNotIn(other_category.name.encode(), res.content)
+        self.assertIn(own_budget.name.encode(), res.content)
+        self.assertNotIn(other_budget.name.encode(), res.content)
 
-    def test_cards_listed_in_view(self):
+    def test_transactions_listed_in_view(self):
         self.c.login(
             username=self.user.username,
             password='secret'
         )
-        category = CategoryFactory(user=self.user)
-        card = CardFactory(category=category)
-        res = self.c.get('/board/category')
+        budget = BudgetFactory(user=self.user)
+        transaction = TransactionFactory(budget=budget)
+        res = self.c.get('/board/budget')
 
-        self.assertIn(card.title.encode(), res.content)
+        self.assertIn(transaction.amount.encode(), res.content)
 
 
-class TestCardViews(TestCase):
+class TestTransactionViews(TestCase):
+    pass
+
+
+class TestBudgetCreateViews(TestCase):
     pass
 
