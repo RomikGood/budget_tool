@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_registration',
     'budgets',
-    'board',
+    'board'
+    ,
 
 
 ]
