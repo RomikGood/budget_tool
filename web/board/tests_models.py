@@ -3,6 +3,8 @@ from budgets.factories import UserFactory, BudgetFactory, TransactionFactory
 
 
 class TestBudgetModels(TestCase):
+    """Test budget models for correct data
+    """
     def setUp(self):
         self.budget = BudgetFactory(
             name='test name',

@@ -5,6 +5,8 @@ from django.db import models
 
 
 class Budget(models.Model):
+    """Budget model 
+    """
     user = models.ForeignKey(
         User, 
         on_delete=models.CASCADE, 
@@ -24,6 +26,8 @@ class Budget(models.Model):
 
 
 class Transaction(models.Model):
+    """unique transaction for a budget model
+    """
     assigned_to = models.ForeignKey(User, on_delete=models.CASCADE, related_name='transaction', null=True, blank=True)
     budget = models.ForeignKey(Budget, on_delete=models.CASCADE, related_name='transaction')
     

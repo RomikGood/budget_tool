@@ -4,13 +4,19 @@ from django.urls import reverse
 
 
 class TestBudgetViews(TestCase):
+    """defines test for budget class
+    """
     def setUp(self):
+        """Test sutup
+        """
         self.user = UserFactory()
         self.user.set_password('secret')
         self.user.save()
         self.c = Client()
 
     def test_denied_if_no_login(self):
+        """if no login is provided denied
+        """
         res = self.c.get('/board/budget', follow=True)
         self.assertEqual(res.status_code, 200)
         self.assertIn(b'class="login-form container"', res.content)
@@ -28,6 +34,8 @@ class TestBudgetViews(TestCase):
         # self.assertIn(budget.name, res.content)
 
     def test_lists_only_owned_budgets(self):
+        """test provides login and checks if string is in respose content
+        """
         self.c.login(
             username=self.user.username,
             password='secret'
@@ -39,7 +47,7 @@ class TestBudgetViews(TestCase):
         res = self.c.get('/board/budget')
         # import pdb; pdb.set_trace()
         self.assertInHTML(f'<h2>{own_budget.name}</h2>', res.content.decode())
-        # self.assertNotIn(other_budget.name, res.content)
+       
 
     def test_transactions_listed_in_view(self):
         self.c.login(
@@ -58,6 +66,8 @@ class TestTransactionViews(TestCase):
 
 
 class TestBudgetCreateViews(TestCase):
+    """Class for testing budget view
+    """
     def setUp(self):
         self.user = UserFactory()
         self.user.set_password('super_secret')
@@ -77,6 +87,8 @@ class TestBudgetCreateViews(TestCase):
      
 
     def test_create_view_adds_new_budget(self):
+        """tests if user can add new budget data
+        """
         self.c.login(
             username=self.user.username,
             password='super_secret'
