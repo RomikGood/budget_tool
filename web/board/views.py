@@ -55,7 +55,7 @@ class TransactionCreateView(LoginRequiredMixin, CreateView):
     template_name = 'board/transaction_create.html'
     model = Transaction
     form_class = TransactionForm
-    success_url = reverse_lazy('transaction_view')
+    success_url = reverse_lazy('budget_view')
     login_url = reverse_lazy('login')
 
     def form_valid(self, form):
