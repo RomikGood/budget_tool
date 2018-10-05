@@ -5,7 +5,7 @@ from django.db import models
 
 
 class Budget(models.Model):
-    """Budget model 
+    """Budget model
     """
     user = models.ForeignKey(
         User, 
