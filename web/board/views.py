@@ -6,6 +6,8 @@ from .forms import BudgetForm, TransactionForm
 
 
 class BudgetListView(LoginRequiredMixin, ListView):
+    """view class for creating budget list
+    """
     template_name = 'board/budget_list.html'
     context_object_name = 'budgets'
     login_url = reverse_lazy('login')
@@ -21,7 +23,8 @@ class BudgetListView(LoginRequiredMixin, ListView):
             user__username=self.request.user.username)
 
 class BudgetCreateView(LoginRequiredMixin, CreateView):
-    """."""
+    """view class for new budgets
+    """
     template_name = 'board/budget_create.html'
     model = Budget
     form_class = BudgetForm
@@ -34,6 +37,8 @@ class BudgetCreateView(LoginRequiredMixin, CreateView):
 
 
 class TransactionDetailView(LoginRequiredMixin, DetailView):
+    """view model for detail view of each transaction
+    """
     template_name = 'board/transaction_detail.html'
     context_object_name = 'transaction'
     login_url = reverse_lazy('login')
@@ -45,7 +50,8 @@ class TransactionDetailView(LoginRequiredMixin, DetailView):
 
 
 class TransactionCreateView(LoginRequiredMixin, CreateView):
-    """."""
+    """View function to create new transaction
+    """
     template_name = 'board/transaction_create.html'
     model = Transaction
     form_class = TransactionForm
